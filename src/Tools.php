@@ -860,6 +860,7 @@ class Tools extends ToolsBase
             . $this->serviceXsd['EnvioLoteEventos']['name'];
         Validator::isValid($content, $xsd);
         $url = $this->urlloteassincrono[$this->tpAmb];
+        $this->lastRequest = $content;
         $this->lastResponse = $this->sendApi('POST', $url, $content);
         return $this->lastResponse;
     }
