@@ -49,6 +49,39 @@ class EvtServPrest extends Factory implements FactoryInterface
     }
 
     /**
+     * Formats BCMath decimal strings without converting to float.
+     * The EFD-Reinf XSD requires a comma decimal separator.
+     */
+    protected static function formatDecimal($value, int $precision = 2, string $separator = ','): ?string
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if (!is_string($value) && !is_int($value)) {
+            throw new \InvalidArgumentException('Monetary values must be decimal strings or integers.');
+        }
+
+        $value = trim((string) $value);
+
+        if (!preg_match('/^[+]?[0-9]+(?:\.[0-9]+)?$/D', $value)) {
+            throw new \InvalidArgumentException('Invalid non-negative monetary value: ' . $value);
+        }
+
+        $rounded = bcround($value, $precision);
+        $parts = explode('.', $rounded, 2);
+        $integer = ltrim($parts[0], '0');
+        $integer = $integer === '' ? '0' : $integer;
+        $fraction = str_pad($parts[1] ?? '', $precision, '0');
+
+        if (strlen($integer) > 12) {
+            throw new \InvalidArgumentException('Monetary value exceeds the 12-digit XSD integer limit.');
+        }
+
+        return $integer . $separator . $fraction;
+    }
+
+    /**
      * Node constructor
      */
     protected function toNode()
@@ -135,37 +168,37 @@ class EvtServPrest extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalBruto",
-            self::format($this->std->vlrtotalbruto, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalbruto, 2, $this->decimalSeparator),
             true
         );
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalBaseRet",
-            self::format($this->std->vlrtotalbaseret, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalbaseret, 2, $this->decimalSeparator),
             true
         );
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalRetPrinc",
-            self::format($this->std->vlrtotalretprinc, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalretprinc, 2, $this->decimalSeparator),
             true
         );
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalRetAdic",
-            self::format($this->std->vlrtotalretadic ?? null, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalretadic ?? null, 2, $this->decimalSeparator),
             false
         );
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalNRetPrinc",
-            self::format($this->std->vlrtotalnretprinc ?? null, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalnretprinc ?? null, 2, $this->decimalSeparator),
             false
         );
         $this->dom->addChild(
             $ideTomador,
             "vlrTotalNRetAdic",
-            self::format($this->std->vlrtotalnretadic ?? null, 2, $this->decimalSeparator),
+            self::formatDecimal($this->std->vlrtotalnretadic ?? null, 2, $this->decimalSeparator),
             false
         );
 
@@ -192,7 +225,7 @@ class EvtServPrest extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $nfs,
                 "vlrBruto",
-                self::format($n->vlrbruto, 2, $this->decimalSeparator),
+                self::formatDecimal($n->vlrbruto, 2, $this->decimalSeparator),
                 true
             );
             $this->dom->addChild(
@@ -213,55 +246,55 @@ class EvtServPrest extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrBaseRet",
-                    self::format($its->vlrbaseret, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrbaseret, 2, $this->decimalSeparator),
                     true
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrRetencao",
-                    self::format($its->vlrretencao, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrretencao, 2, $this->decimalSeparator),
                     true
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrRetSub",
-                    self::format($its->vlrretsub ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrretsub ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrNRetPrinc",
-                    self::format($its->vlrnretprinc ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrnretprinc ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrServicos15",
-                    self::format($its->vlrservicos15 ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrservicos15 ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrServicos20",
-                    self::format($its->vlrservicos20 ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrservicos20 ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrServicos25",
-                    self::format($its->vlrservicos25 ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrservicos25 ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrAdicional",
-                    self::format($its->vlradicional ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlradicional ?? null, 2, $this->decimalSeparator),
                     false
                 );
                 $this->dom->addChild(
                     $infoTpServ,
                     "vlrNRetAdic",
-                    self::format($its->vlrnretadic ?? null, 2, $this->decimalSeparator),
+                    self::formatDecimal($its->vlrnretadic ?? null, 2, $this->decimalSeparator),
                     false
                 );
 
@@ -293,7 +326,7 @@ class EvtServPrest extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoProcRetPr,
                     "valorPrinc",
-                    self::format($irp->valorprinc, 2, $this->decimalSeparator),
+                    self::formatDecimal($irp->valorprinc, 2, $this->decimalSeparator),
                     true
                 );
                 $ideTomador->appendChild($infoProcRetPr);
@@ -323,7 +356,7 @@ class EvtServPrest extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoProcRetAd,
                     "valorAdic",
-                    self::format($rad->valoradic, 2, $this->decimalSeparator),
+                    self::formatDecimal($rad->valoradic, 2, $this->decimalSeparator),
                     true
                 );
                 $ideTomador->appendChild($infoProcRetAd);
