@@ -107,7 +107,8 @@
                                 },
                                 "vlrbruto": {
                                     "required": true,
-                                    "type": "number"
+                                    "type": "string",
+                                    "pattern": "^[0-9]+\\.[0-9]{2}$"
                                 },
                                 "indfciscp": {
                                     "required": false,
@@ -127,7 +128,8 @@
                                 },
                                 "percscp": {
                                     "required": false,
-                                    "type": ["number","null"]
+                                    "type": ["string", "null"],
+                                    "pattern": "^[0-9]+\\.[0-9]{1}$"
                                 },
                                 "indjud": {
                                     "required": false,
@@ -162,73 +164,53 @@
                                     "properties": {
                                         "vlrbaseir": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrir": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrbaseagreg": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlragreg": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrbasecsll": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrcsll": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrbasecofins": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrcofins": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrbasepp": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         },
                                         "vlrpp": {
                                             "required": false,
-                                            "type": [
-                                                "number",
-                                                "null"
-                                            ]
+                                            "type": ["string", "null"],
+                                            "pattern": "^[0-9]+\\.[0-9]{2}$"
                                         }
                                     }
                                 },
@@ -265,87 +247,63 @@
                                             },
                                             "vlrbasesuspir": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrnir": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrdepir": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrbasesuspcsll": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrncsll": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrdepcsll": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrbasesuspcofins": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrncofins": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
-                                            "vlrndepcofins": {
+                                            "vlrdepcofins": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
-                                            "vlrbaseSusppp": {
+                                            "vlrbasesusppp": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrnpp": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             },
                                             "vlrdeppp": {
                                                 "required": false,
-                                                "type": [
-                                                    "number",
-                                                    "null"
-                                                ]
+                                                "type": ["string", "null"],
+                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                             }
                                         }
                                     }
@@ -394,11 +352,13 @@
                                             "properties": {
                                                 "vlrdespcustas": {
                                                     "required": true,
-                                                    "type": "number"
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]+\\.[0-9]{2}$"
                                                 },
                                                 "vlrdespadvogados": {
                                                     "required": true,
-                                                    "type": "number"
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]+\\.[0-9]{2}$"
                                                 },
                                                 "ideadv": {
                                                     "required": false,
@@ -423,10 +383,8 @@
                                                             },
                                                             "vlradv": {
                                                                 "required": false,
-                                                                "type": [
-                                                                    "number",
-                                                                    "null"
-                                                                ]
+                                                                "type": ["string", "null"],
+                                                                "pattern": "^[0-9]+\\.[0-9]{2}$"
                                                             }
                                                         }
                                                     }
